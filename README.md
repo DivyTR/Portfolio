@@ -4,7 +4,7 @@ Welcome to my interactive and attractive portfolio website! This website serves 
 
 ## Live Demo
 
-Explore my portfolio website live at [https://www.yourportfolio.com]
+Explore my portfolio website live at (https://divytr.github.io/Portfolio/)
 
 ## Features
 
