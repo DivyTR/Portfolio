@@ -58,7 +58,12 @@ body{
     font-size: 32px;
     position: relative;
     letter-spacing: 2px;
-    color: #fff;
+     background: url(image.jpg);
+    background-size: cover;
+    background-position: center;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
     text-decoration: none;
     transition: 0.6s;
     font-weight: 600;
