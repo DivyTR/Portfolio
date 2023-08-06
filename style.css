@@ -277,7 +277,7 @@ section{
 .btn:hover{
 
     transform: translateY(-3px);
-    z-index: 10;
+    
 }
 
 .cv a:hover{
@@ -1117,6 +1117,6 @@ textarea::-webkit-scrollbar-thumb{
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 1;
+
     
 }
