@@ -277,6 +277,7 @@ section{
 .btn:hover{
 
     transform: translateY(-3pxx);
+    z-index: 10;
 }
 
 .cv a:hover{
@@ -1006,6 +1007,7 @@ section{
     20px 40px 80px #008cff,
     20px 60px 100px #008cff,
     40px 80px 140px #008cff,
+    40px 100px 200px #008cff, 
     40px 100px 200px #008cff;
     
 
@@ -1105,4 +1107,16 @@ textarea::-webkit-scrollbar-thumb{
                 0 0 25px #03e9f4,
                 0 0 50px #03e9f4,
                 0 0 2005px #03e9f4;
+}
+.circlee{
+
+    height: 24px;
+    width: 24px;
+    border-radius: 24px;
+    background-color: #00eeff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    
 }
