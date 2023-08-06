@@ -9,6 +9,16 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
+      <div class="circlee"></div>
+  <div class="circlee"></div>
+  <div class="circlee"></div>
+  <div class="circlee"></div>
+  <div class="circlee"></div>
+  <div class="circlee"></div>
+  <div class="circlee"></div>
+  <div class="circlee"></div>
+  <div class="circlee"></div>
+  <div class="circlee"></div>
     <header class="header">
         <a href="#" class="logo">Portfolio</a>
 
@@ -426,6 +436,45 @@ darkModeIcon.onclick = () => {
         smoothScroll(target, duration);
       }
     });
+
+</script>
+    <script>
+
+  const coords = {x:0, y:0};
+  const circles = document.querySelectorAll(".circlee");
+
+  circles.forEach(function (circlee){
+    circlee.x = 0;
+    circlee.y = 0;
+  });
+
+  window.addEventListener("mousemove", function(e){
+
+    coords.x = e.clientX;
+    coords.y = e.clientY;
+
+    animateCircles();
+  });
+  function animateCircles(){
+
+    let x = coords.x;
+    let y = coords.y;
+  
+    circles.forEach(function(circlee, index){
+
+      circlee.style.left = x - 12 + "px";
+      circlee.style.top = y - 12 + "px";
+      circlee.style.scale = (circles.length - index) / circles.length;
+      circlee.x = x;
+      circlee.y = y;
+
+      const nextCircle = circles[index + 1] || circles[0];
+      x+= (nextCircle.x - x) * 0.3;
+      y+= (nextCircle.y - y) * 0.3;
+  });
+
+
+}
 
 </script>
 <script type="text/javascript" src="particles.js"></script>
