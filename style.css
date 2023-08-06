@@ -276,7 +276,7 @@ section{
 }
 .btn:hover{
 
-    transform: translateY(-3pxx);
+    transform: translateY(-3px);
     z-index: 10;
 }
 
