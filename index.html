@@ -35,7 +35,8 @@
        
         
     </header>
-
+<div id="progressbar"></div>
+<div id="scrollpath"></div>
 <section class="home" id="home">
     
     <div class="home-content">
@@ -475,7 +476,14 @@ darkModeIcon.onclick = () => {
 
 
 }
-
+<script type="text/javascript">
+  let progress = document.getElementById('progressbar');
+  let totalHeight = document.body.scrollHeight - window.innerHeight;
+  window.onscroll = function(){
+    let progressHeight = (window.pageYOffset / totalHeight) * 100;
+    progress.style.height = progressHeight + "%";
+  }
+</script>
 </script>
 <script type="text/javascript" src="particles.js"></script>
 <script type="text/javascript" src="app.js"></script>
