@@ -281,14 +281,14 @@
 
 <section id="contact">
     
-    <form>
+    <form action="https://formsubmit.co/divyanshtripathi04@gmail.com" method="POST">
         <h1>Contact Me</h1>
-        <input type="text" id="firstName" placeholder="First Name" required>
-        <input type="text" id="lastName" placeholder="Last Name" required>
-        <input type="email" id="email" placeholder="Email" required>
-        <input type="text" id="mobile" placeholder="Mobile" required>
+        <input type="text" name="FirstName" id="firstName" placeholder="First Name" required>
+        <input type="text" name="LastName"id="lastName" placeholder="Last Name" required>
+        <input type="email" name="email"id="email" placeholder="Email" required>
+        <input type="text" name="mobile"id="mobile" placeholder="Mobile" required>
         <h4>Type Your Message Here...</h4>
-        <textarea required></textarea>
+        <textarea name="message" required></textarea>
         <input type="submit" value="Send" id="button">
     </form>
 </section>
@@ -333,7 +333,7 @@ darkModeIcon.onclick = () => {
   "max-glare":0.6
 });</script> 
 <script>VanillaTilt.init(document.querySelectorAll("#contact form"), {
-    max: 10,
+    max: 4,
     speed: 1000,
     glare: true,
     "max-glare":0.4
