@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&family=Fira+Sans:wght@500&family=Lobster&family=Merriweather:wght@300;400&family=Playfair+Display:wght@600&family=Poppins:wght@200&family=Signika+Negative&family=Tektur&display=swap" rel="stylesheet">
@@ -20,6 +21,8 @@
   <div class="circlee"></div>
   <div class="circlee"></div>
     <header class="header">
+      
+      
         <a href="#" class="logo">Portfolio</a>
 
         <ul>
@@ -28,8 +31,8 @@
            <li><a href="#skills">Skills</a></li>
            <li><a href="#projects">Projects</a></li>
            <li><a href="#contact">Contact</a></li>
-          
         </ul>
+        <div class="menu-icon">&#9776;</div>
         
         
        
@@ -37,9 +40,12 @@
     </header>
 <div id="progressbar"></div>
 <div id="scrollpath"></div>
+ 
 <section class="home" id="home">
+  
     
     <div class="home-content">
+      
         <h3>Hey, its me</h3>
         <h1>Divyansh Tripathi</h1>
         <h3 id="line">I'm a <span id="text"></span></h3>
@@ -55,6 +61,7 @@
         </span>
     </div>
     <div class="profession-container">
+      
         <div class="profession-box">
             <div class="profession">
                 
@@ -125,7 +132,7 @@
 </section>
 <div id="particles-js"></div>
 <section id="about">
-    
+
     <div class="cont">
         <h2>About Me</h2>
         <h2>About Me</h2>
@@ -147,6 +154,7 @@
 </section>
 
 <section id="skills">
+  
 <div class="containerz">
     <div class="cardz">
         <div class="percent" style="--clr:rgb(188, 223, 255); --num:85;">
@@ -250,7 +258,7 @@
         <h2>1</h2>
         <h3>Port Scanner</h3>
         <p>A simple but fast(multi-threaded), attractive and a user friendly port scanner developed in python, that provides requisite information </p>
-        <a href="https://github.com/DivyTR/Port-Scanner" target="_blank">Github</a>
+        <a href="#" target="_blank">Github</a>
       </div>
     </div>
   </div>
@@ -260,7 +268,7 @@
         <h2>2</h2>
         <h3>Keylogger</h3>
         <p>BlucioBot - A Smart keylogger tool that captures keystrokes and takes periodic screenshots. It allows users to collect information discreetly. </p>
-        <a href="https://github.com/DivyTR/Keylogger" target="_blank">Github</a>
+        <a href="#" target="_blank">Github</a>
       </div>
     </div>
   </div>
@@ -293,6 +301,7 @@
     </form>
 </section>
 
+</div>
   
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -439,7 +448,7 @@ darkModeIcon.onclick = () => {
     });
 
 </script>
-    <script>
+<script>
 
   const coords = {x:0, y:0};
   const circles = document.querySelectorAll(".circlee");
@@ -478,7 +487,7 @@ darkModeIcon.onclick = () => {
 }
 
 </script>
-    <script>
+<script>
   const wrapper = document.getElementById("bubble-wrapper");
   const animateBubble = x =>{
     const bubble = document.createElement("div");
@@ -489,7 +498,7 @@ darkModeIcon.onclick = () => {
   }
   window.onmousemove = e => animateBubble(e.clientX);
 </script>
-    <script type="text/javascript">
+<script type="text/javascript">
   let progress = document.getElementById('progressbar');
   let totalHeight = document.body.scrollHeight - window.innerHeight;
   window.onscroll = function(){
@@ -497,7 +506,33 @@ darkModeIcon.onclick = () => {
     progress.style.height = progressHeight + "%";
   }
 </script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+  // Select elements
+const menuIcon = document.querySelector('.menu-icon');
+const navigationLinks = document.querySelector('ul');
+
+// Toggle menu icon and navigation links
+menuIcon.addEventListener('click', function () {
+  menuIcon.classList.toggle('hide');
+  navigationLinks.classList.toggle('show');
+});
+
+// Hide navigation links and show menu icon when a link is clicked
+document.querySelectorAll('ul li a').forEach(function (link) {
+  link.addEventListener('click', function () {
+    menuIcon.classList.remove('hide');
+    navigationLinks.classList.remove('show');
+  });
+});
+
+</script>
+
+
+
+
 <script type="text/javascript" src="particles.js"></script>
-<script type="text/javascript" src="app.js"></script>
+<script type="text/javascript" src="app.js"></script> 
+</script>
 </body>
 </html>
