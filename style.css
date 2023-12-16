@@ -627,29 +627,26 @@ section{
 
 
 
-#skills{
+#skills {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 140vh;
-    
-    
-}
-.containerz{
-
+  }
+  
+  .containerz {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 120px;
-    
-}
-
-.containerz .cardz{
-
+    gap: 20px; /* Adjust the gap for smaller screens */
+  }
+  
+  .containerz .cardz {
     position: relative;
-    width: 250px;
+    width: 100%; /* Adjust to full width on smaller screens */
+    max-width: 250px; /* Set a maximum width for larger screens */
     height: 250px;
     border-radius: 20px;
     border-bottom: #000;
@@ -663,41 +660,36 @@ section{
     backdrop-filter: blur(10px);
     border-top: 1px solid rgba(255, 255, 255, 0.5);
     border-left: 1px solid rgba(255, 255, 255, 0.5);
-}
-.containerz .cardz:hover{
-
+  }
+  
+  .containerz .cardz:hover {
     transform: translateY(-10px);
-    box-shadow: 10px 20px 50px #008cff,
-   10px 30px 60px #008cff,
-   20px 40px 70px #008cff;
-   
-}
-.containerz .cardz .percent
-{
+    box-shadow: 10px 20px 50px #008cff, 10px 30px 60px #008cff, 20px 40px 70px #008cff;
+  }
+  
+  .containerz .cardz .percent {
     position: relative;
     width: 150px;
     height: 150px;
+  }
   
-}
-
-.containerz .cardz .percent svg {
-
+  .containerz .cardz .percent svg {
     position: relative;
     width: 150px;
     height: 150px;
     transform: rotate(270deg);
-}
-.containerz .cardz .percent svg circle{
-
+  }
+  
+  .containerz .cardz .percent svg circle {
     width: 100%;
     height: 100%;
     fill: transparent;
     stroke-width: 3;
     stroke: rgb(55, 55, 55);
     transform: translate(5px, 5px);
-}
-.containerz .cardz .percent svg circle:nth-child(2){
-
+  }
+  
+  .containerz .cardz .percent svg circle:nth-child(2) {
     stroke: var(--clr);
     stroke-dasharray: 440;
     stroke-dashoffset: calc(440 - (440 * var(--num)) / 100);
@@ -705,7 +697,8 @@ section{
     animation: fadein 1s linear forwards;
     animation-delay: 1.7s;
     transition: 2s;
-}
+  }
+  
 
 
 @keyframes fadein {
@@ -720,17 +713,14 @@ section{
     }
 }
 
-.dot{
-
+.dot {
     position: absolute;
     inset: 5px;
     z-index: 10;
     animation: animatedot 2s linear forwards;
-    
-}
-
-.dot::before
-{
+  }
+  
+  .dot::before {
     content: '';
     position: absolute;
     top: -5px;
@@ -740,22 +730,19 @@ section{
     height: 10px;
     border-radius: 50%;
     background: var(--clr);
-    box-shadow: 0 0 10px var(--clr),
-    0 0 20px var(--clr);
-}
-
-@keyframes animatedot {
-    
-    0%{
-        transform: rotate(0deg);
+    box-shadow: 0 0 10px var(--clr), 0 0 20px var(--clr);
+  }
+  
+  @keyframes animatedot {
+    0% {
+      transform: rotate(0deg);
     }
-    100%{
-        transform: rotate(calc(3.6deg * var(--num)));
+    100% {
+      transform: rotate(calc(3.6deg * var(--num)));
     }
-}
-
-.number{
-
+  }
+  
+  .number {
     position: absolute;
     inset: 0;
     display: flex;
@@ -766,11 +753,9 @@ section{
     animation: fadein 1.5s linear forwards;
     animation-delay: 1.6s;
     transition: 2s;
-}
-
-
-.number h2{
-
+  }
+  
+  .number h2 {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -778,29 +763,42 @@ section{
     color: #fff;
     font-size: 2.5em;
     font-weight: 700;
-
-}
-
-.number p{
-
+  }
+  
+  .number p {
     font-weight: 700;
     font-size: 1em;
     line-height: 24px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.75);   
-}
-.number .ns{
-
+    color: rgba(255, 255, 255, 0.75);
+  }
+  
+  .number .ns {
     padding-left: 36px;
     font-size: 0.8em;
-}
-.number h2 span{
-
+  }
+  
+  .number h2 span {
     font-weight: 300;
     color: #fff;
     font-size: 0.5em;
-}
+  }
+  
+  /* Apply additional styles for smaller screens using media queries */
+  @media (max-width: 768px) {
+    .containerz .cardz {
+      max-width: 100%; /* Adjust the max-width for smaller screens */
+    }
+    .containerz .cardz .percent {
+      width: 100px; /* Adjust the width for smaller screens */
+      height: 100px; /* Adjust the height for smaller screens */
+    }
+    .containerz .cardz .percent svg {
+      width: 100px; /* Adjust the width for smaller screens */
+      height: 100px; /* Adjust the height for smaller screens */
+    }
+  }
 #skills .cardz.active {
     animation: fadein 1s linear forwards;
   }
