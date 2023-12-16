@@ -882,29 +882,29 @@ section{
     }
     
 }
-.container2
-{
+.container2 {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 1200px;
-  flex-wrap: wrap;
+  max-width: 100%; /* Adjust max-width for better responsiveness */
+  flex-direction: column; /* Stack cards vertically on smaller screens */
   z-index: 1;
   margin-top: 0;
   min-height: 0;
-  padding-bottom: 36px;
+  padding-bottom: 20px; /* Adjust padding for smaller screens */
 }
-.container2 .card2
-{
+
+.container2 .card2 {
   position: relative;
-  width: 380px;
-  height: 480px;
+  width: 100%; /* Adjust to full width on smaller screens */
+  max-width: 380px; /* Set a maximum width for larger screens */
+  height: auto; /* Allow height to adjust based on content */
   margin: 0px;
-  padding-bottom: 100px;
+  padding-bottom: 20px; /* Adjust padding for smaller screens */
   box-shadow: 20px 50px 60px rgba(0, 0, 0, 0.5),
-  20px 70px 80px rgba(0, 0, 0, 0.5),
-  40px 90px 100px rgba(0, 0, 0, 0);
+              20px 70px 80px rgba(0, 0, 0, 0.5),
+              40px 90px 100px rgba(0, 0, 0, 0);
   border-radius: 15px;
   background: rgba(255, 255, 255, 0.135);
   overflow: hidden;
@@ -913,7 +913,7 @@ section{
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   border-left: 1px solid rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(5px);
-  
+  margin-bottom: 20px; /* Add margin between stacked cards */
 }
 .container2 .card2:hover{
     transform: translate3d(-20px);
