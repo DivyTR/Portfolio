@@ -577,15 +577,15 @@ section{
 
     height: 500px;
 }
-.container1 .card
-{
+.container1 .card {
   position: relative;
-  width: 880px;
-  height: 400px;
-  margin: 0px;
+  width: 100%; /* Change to a percentage to make it responsive */
+  max-width: 880px; /* Set a maximum width for larger screens */
+  height: auto; /* Let the height adjust based on content */
+  margin: 0 auto; /* Center the container horizontally */
   box-shadow: 20px 50px 60px rgba(0, 0, 0, 0.5),
-  20px 70px 80px rgba(0, 0, 0, 0.5),
-  40px 90px 100px rgba(0, 0, 0, 0);
+              20px 70px 80px rgba(0, 0, 0, 0.5),
+              40px 90px 100px rgba(0, 0, 0, 0);
   border-radius: 15px;
   background: rgba(255, 255, 255, 0.11);
   overflow: hidden;
@@ -594,27 +594,37 @@ section{
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   border-left: 1px solid rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(5px);
-  
-}
-.container1 .card:hover{
-    transform: translate3d(-20px);
-}
-.container1 .card .content{
+  transition: transform 0.5s; /* Move transition property to the main selector */
 
+  /* Adjust padding for smaller screens */
   padding: 20px;
+}
+
+.container1 .card:hover {
+  transform: translate3d(-20px, -20px, 0); /* Translate both X and Y */
+}
+
+.container1 .card .content {
   text-align: center;
-  
-  transition: 0.5s;
 }
-.container1 .card .content p{
-    font-size:  2.2em;
-    color: #ffffff;
-    font-weight: 200;
-    font-family: 'Lobster', cursive;
-    text-align: center;
-    padding-left:4px;
-    padding-right: 4px;
+
+.container1 .card .content p {
+  font-size: 2.3em;
+  color: #ffffff;
+  font-weight: 200;
+  font-family: 'Lobster', cursive;
+  text-align: center;
+  padding-left: 4px;
+  padding-right: 4px;
 }
+
+/* Apply additional styles for smaller screens using media queries */
+@media (max-width: 768px) {
+  .container1 .card {
+    max-width: 100%; /* Adjust the max-width for smaller screens */
+  }
+}
+
 
 
 #skills{
