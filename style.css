@@ -239,6 +239,9 @@ section{
     line-height: 2;
     
 }
+.home-content .social-media a:hover{
+    transform: translateY(-3px);
+}
 .home-content .social-media a {
 
     display: inline-flex;
@@ -316,7 +319,7 @@ section{
 }
 
 .cv a:hover{
-
+    transform: translateY(-3px);
     background: rgb(206, 231, 255);
     color: #050801;
     
@@ -329,17 +332,25 @@ section{
 }
 
 
-.home .profession-container{
+.home .profession-container {
     position: absolute;
     top: 50%;
     right: 0;
     transform: translateY(-50%);
     width: 768px;
     height: 768px;
-   z-index: 1;
+    z-index: 1;
     overflow: hidden;
     pointer-events: none;
-}
+  }
+  
+  /* Add a media query for screens smaller than 768px */
+  @media only screen and (max-width: 800px) {
+    .home .profession-container {
+      display: none; /* Hide the glowing cube on smaller screens */
+    }
+  }
+  
 .home .profession-container .profession-box{
     position: absolute;
     top: 0;
@@ -674,7 +685,7 @@ section{
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 20px; /* Adjust the gap for smaller screens */
+    gap: 105px; /* Adjust the gap for smaller screens */
   }
   
   .containerz .cardz {
@@ -946,7 +957,20 @@ section{
   .pro h1 span:nth-child(8) {
     animation-delay: 2.25s;
   }
-  
+  #projects{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100%;
+    margin-top: 0;
+    min-height: 0;
+    padding-bottom: 20px;
+  }
+  @media only screen and (max-width: 768px) {
+    #projects{
+        flex-direction: column;
+    }
+  }
   .container2 {
     display: flex;
     flex-direction: column;
@@ -1073,7 +1097,7 @@ section{
     }
   }
   
-  #contact{
+  #contact {
     min-height: 100vh;
     padding-top: 50px;
     background: #08071d;
@@ -1082,39 +1106,34 @@ section{
     justify-content: center;
     align-items: center;
     background: url("bg.png") no-repeat center center/cover;
-    box-shadow: 20px 20px 50px #008cff,
-    20px 40px 80px #008cff,
-    20px 60px 100px #008cff,
-    40px 80px 140px #008cff,
-    40px 100px 200px #008cff,
-    40px 100px 200px #008cff;
-    
-
-}
-
-#contact form{
-    width: 670px;
-    height: 450px;
+    box-shadow: 20px 20px 50px #008cff, 20px 40px 80px #008cff, 20px 60px 100px #008cff, 40px 80px 140px #008cff, 40px 100px 200px #008cff, 40px 100px 200px #008cff;
+  }
+  
+  #contact form {
+    width: 100%; /* Use full width on smaller screens */
+    max-width: 670px;
+    height: auto; /* Adjust height based on content */
     display: flex;
     justify-content: center;
-    box-shadow: 20px 20px 50px rgba(0,0,0,0.5);
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
     border-radius: 15px;
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     flex-wrap: wrap;
-}
-
-#contact form h1{
+    padding: 20px; /* Add padding for better spacing */
+  }
+  
+  #contact form h1 {
     color: #fff;
     font-weight: 500;
     margin-top: 20px;
-    padding-bottom:30px;
-    width: 500px;
+    padding-bottom: 30px;
+    width: 100%; /* Use full width on smaller screens */
     text-align: center;
-}
-
-#contact form input{
-    width: 290px;
+  }
+  
+  #contact form input {
+    width: 100%; /* Use full width on smaller screens */
     height: 50px;
     padding-left: 10px;
     outline: none;
@@ -1123,26 +1142,19 @@ section{
     margin-bottom: 10px;
     background: none;
     border-bottom: 2px solid #fff;
-}
-
-#contact form input::placeholder{
-    color: #ddd;
-}
-
-#contact form #lastName,
-#contact form #mobile{
-    margin-left: 20px;
-}
-
-#contact form h4{
+  }
+  
+  #contact form h4 {
     color: #fff;
     font-weight: 300;
     font-size: 18px;
-    width: 600px;
+    width: 100%; /* Use full width on smaller screens */
     margin-top: 20px;
-}
-
-#contact form textarea{
+  }
+  
+  #contact form textarea {
+    width: 100%; /* Use full width on smaller screens */
+    min-height: 120px; /* Increase minimum height */
     background: none;
     border: none;
     border-bottom: 2px solid #fff;
@@ -1151,21 +1163,9 @@ section{
     font-size: 15px;
     padding: 10px;
     outline: none;
-    min-width: 600px;
-    max-width: 600px;
-    min-height: 80px;
-    max-height: 80px;
-}
-
-textarea::-webkit-scrollbar{
-    width: 1em;
-}
-
-textarea::-webkit-scrollbar-thumb{
-    background-color: rgba(194,194,194,0.713);
-}
-
-#contact form #button{
+  }
+  
+  #contact form #button {
     border: none;
     background: #fff;
     border-radius: 5px;
@@ -1173,13 +1173,18 @@ textarea::-webkit-scrollbar-thumb{
     font-weight: 600;
     font-size: 20px;
     color: #333;
-    width: 100px;
-    padding: 0;
-    margin-right: 500px;
-    margin-bottom: 30px;
+    width: 100%; /* Use full width on smaller screens */
+    padding: 10px; /* Adjust padding for better spacing */
     transition: 0.3s;
-}
-
+  }
+  
+  /* Media query for smaller screens */
+  @media only screen and (max-width: 768px) {
+    #contact form #button {
+      margin-right: 0; /* Remove right margin on smaller screens */
+    }
+  }
+  
 #contact form #button:hover{
     transform: translateY(-3px);
     box-shadow: 0 0 5px #00eeff,
