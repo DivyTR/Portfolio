@@ -1239,6 +1239,14 @@ section{
     animation: scrollz 5s linear infinite ;
 }
 
+@media only screen and (max-width: 768px) {
+
+    #contact{
+        margin-right: 0;
+    }
+  }
+
+
 @keyframes scrollz {
     
 
