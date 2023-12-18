@@ -490,7 +490,12 @@ section{
     transition: 0s;
     background: red;
 }
+#about{
 
+    margin: 0;
+    max-width: 100%;
+
+}
 .cont{
     position: relative;
     width: 100%;
@@ -500,6 +505,11 @@ section{
     justify-content: center;
     align-items: center;
 
+}
+@media only screen and (max-width: 768px) {
+    .cont h2 {
+        font-size: 5em; /* Adjust the font size for smaller screens */
+    }
 }
 .cont h2{
 
