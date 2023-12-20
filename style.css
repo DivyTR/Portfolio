@@ -347,7 +347,7 @@ section{
   /* Add a media query for screens smaller than 768px */
   @media only screen and (max-width: 800px) {
     .home .profession-container {
-      display: none; /* Hide the glowing cube on smaller screens */
+        opacity: 0.2; /* Hide the glowing cube on smaller screens */
     }
   }
   
@@ -1191,9 +1191,23 @@ section{
   /* Media query for smaller screens */
   @media only screen and (max-width: 768px) {
     #contact form #button {
-      margin-right: 0; /* Remove right margin on smaller screens */
+      margin-right: 0; 
+      /* Remove right margin on smaller screens */
     }
   }
+  @media only screen and (max-width: 1260px) {
+    .home .profession-container {
+      opacity: 0.2; /* Hide the glowing cube on smaller screens */
+    }
+  }
+  
+  @media only screen and (max-width: 768px) {
+
+    #contact{
+        margin-right: 0;
+    }
+  }
+
   
 #contact form #button:hover{
     transform: translateY(-3px);
@@ -1238,14 +1252,6 @@ section{
     0 10 20px rgb(150, 229, 255);
     animation: scrollz 5s linear infinite ;
 }
-
-@media only screen and (max-width: 768px) {
-
-    #contact{
-        margin-right: 0;
-    }
-  }
-
 
 @keyframes scrollz {
     
