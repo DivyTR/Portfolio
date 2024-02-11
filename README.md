@@ -20,9 +20,7 @@ Explore my portfolio website live at (https://divytr.github.io/Portfolio/)
 - Particle.js (Dynamic particle background)
 - CSS animations (For smooth and attractive transitions)
 
-## Responsiveness
 
-The current version of the portfolio website is not fully responsive. I am aware of this and plan to improve the responsiveness in future updates. I'm committed to delivering an optimal experience across all devices.
 
 ## Contact
 
