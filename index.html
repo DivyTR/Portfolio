@@ -297,6 +297,11 @@ section { padding: 100px 40px; max-width: 1200px; margin: 0 auto; position: rela
   transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
 }
 .project-card:hover::after { transform: scaleX(1); }
+.project-card.featured-project {
+  border: 1px solid rgba(74, 240, 192, 0.15);
+  background: linear-gradient(135deg, var(--surface) 0%, rgba(74, 240, 192, 0.04) 100%);
+}
+.project-card.featured-project .project-number { color: var(--accent); }
 .project-number {
   font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--text-muted);
   letter-spacing: 2px; margin-bottom: 16px;
@@ -792,32 +797,41 @@ body.booting { overflow: hidden; }
     <div class="section-desc">Applied security, ML, and full-stack engineering to solve real-world problems.</div>
   </div>
   <div class="projects-grid">
-    <div class="project-card reveal">
-      <div class="project-number">PROJECT 01</div>
+    <div class="project-card featured-project reveal" style="grid-column: 1 / -1;">
+      <div class="project-number">PROJECT 01 · FEATURED · OPEN SOURCE</div>
+      <h3>SentinelBench — Detection Quality Benchmarking for Microsoft Sentinel</h3>
+      <p>End-to-end detection quality benchmarking tool for Microsoft Sentinel — an open-source alternative to commercial platforms like AttackIQ. Executes 15 MITRE ATT&CK technique simulations via Atomic Red Team and validates whether Sentinel alerts, how fast, and at what severity.</p>
+      <p>Engineered a polling engine that queries the Log Analytics REST API at four checkpoints (T+2, T+5, T+10, T+15min) per technique, measures detection latency and severity delta, and auto-generates KQL detection rules for every missed detection. Delivered a React + D3.js dashboard with an ATT&CK-mapped latency heatmap, run history, and remediation panel backed by FastAPI + SQLite.</p>
+      <div class="project-tech">
+        <span>Python</span><span>FastAPI</span><span>React</span><span>D3.js</span><span>Microsoft Sentinel</span><span>MITRE ATT&CK</span><span>Atomic Red Team</span><span>KQL</span><span>SQLite</span>
+      </div>
+    </div>
+    <div class="project-card reveal" style="transition-delay: 0.1s">
+      <div class="project-number">PROJECT 02</div>
       <h3>Cyber Attack Detection using ML</h3>
       <p>Built a machine learning model to classify anomalous network traffic and predict attacks in real time — achieving strong accuracy across DoS, probe, and R2L categories. Evaluated Random Forest, SVM, and Neural Network classifiers on the KDD Cup dataset.</p>
       <div class="project-tech">
         <span>Python</span><span>Machine Learning</span><span>Network Security</span><span>scikit-learn</span>
       </div>
     </div>
-    <div class="project-card reveal" style="transition-delay: 0.1s">
-      <div class="project-number">PROJECT 02</div>
+    <div class="project-card reveal" style="transition-delay: 0.2s">
+      <div class="project-number">PROJECT 03</div>
       <h3>Secure Quiz Management System</h3>
       <p>Full-stack platform with RBAC, JWT-based auth, and CSRF protection. Tested against OWASP Top 10. Built with Spring Boot REST APIs and React (Vite + Tailwind) with dynamic role assignment and secure admin workflows.</p>
       <div class="project-tech">
         <span>Spring Boot</span><span>React</span><span>JWT</span><span>RBAC</span><span>Tailwind</span>
       </div>
     </div>
-    <div class="project-card reveal" style="transition-delay: 0.2s">
-      <div class="project-number">PROJECT 03</div>
+    <div class="project-card reveal" style="transition-delay: 0.3s">
+      <div class="project-number">PROJECT 04</div>
       <h3>HandWAVE — Hands-Free Accessibility</h3>
       <p>Accessibility-focused, hands-free interaction system achieving 98.6% real-time detection accuracy. Integrates MediaPipe, Face Recognition, and Google Speech API with Firebase sync — designed for users with limited mobility.</p>
       <div class="project-tech">
         <span>Computer Vision</span><span>MediaPipe</span><span>Firebase</span><span>Python</span>
       </div>
     </div>
-    <div class="project-card reveal" style="transition-delay: 0.3s">
-      <div class="project-number">PROJECT 04</div>
+    <div class="project-card reveal" style="transition-delay: 0.4s">
+      <div class="project-number">PROJECT 05</div>
       <h3>Intelligent Parking Management System</h3>
       <p>Computer vision solution using YOLOv8, OCR, and OpenCV for detecting vehicles, parking spaces, and recognizing license plates. Published in the <em>World Journal of Applied Science & Research</em>.</p>
       <div class="project-tech">
@@ -1088,7 +1102,7 @@ function handleTerm(e) {
           printTerm("TCS (SOC Analyst) → JP Tokyo (Dev Intern) → Grant Thornton (IT Risk Intern) → Aithent (Security Analyst Intern)", "sys");
           break;
         case 'projects':
-          printTerm("1. Cyber Attack Detection (ML) 2. Secure Quiz System (Spring Boot) 3. HandWAVE (Computer Vision) 4. Smart Parking (YOLOv8)", "sys");
+          printTerm("1. SentinelBench (Open Source · Sentinel Benchmarking) 2. Cyber Attack Detection (ML) 3. Secure Quiz System (Spring Boot) 4. HandWAVE (Computer Vision) 5. Smart Parking (YOLOv8)", "sys");
           break;
         case 'certs':
           printTerm("PJPT (TCM Security) · Google Cybersecurity Certificate", "sys");
