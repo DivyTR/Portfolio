@@ -910,7 +910,7 @@ input, textarea, select { cursor: text !important; }
 <footer><p>© 2026 Divyansh Tripathi · Built with precision · Delhi, India</p></footer>
 
 <div id="terminal-hud" class="minimized">
-  <div class="term-header" onclick="toggleTerm()">
+  <div class="term-header" onclick="toggleTerm(); event.stopPropagation();">
     <span>root@divyansh: ~</span><span class="term-controls">[ _ ]</span>
   </div>
   <div class="term-body">
