@@ -105,7 +105,7 @@ nav.scrolled { padding: 12px 40px; background: rgba(26, 29, 35, 0.92); }
 .hamburger span { width: 24px; height: 2px; background: var(--text-dim); transition: all 0.3s; border-radius: 1px; }
 
 .hero {
-  min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  min-height: 100svh; display: flex; align-items: center; justify-content: center;
   position: relative; overflow: hidden; padding: 120px 40px 80px;
 }
 .hero-bg { position: absolute; inset: 0; overflow: hidden; z-index: 0; }
@@ -434,7 +434,7 @@ footer { text-align: center; padding: 40px; border-top: 1px solid rgba(255,255,2
   nav { padding: 12px 16px; }
 }
 
-#boot-screen { position: fixed; inset: 0; z-index: 99999; background: #0c0e12; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: opacity 0.6s ease, visibility 0.6s ease; }
+#boot-screen { position: fixed; top: 0; left: 0; width: 100vw; height: 100svh; z-index: 99999; background: #0c0e12; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: opacity 0.6s ease, visibility 0.6s ease; }
 #boot-screen.done { opacity: 0; visibility: hidden; pointer-events: none; }
 body.booting { overflow: hidden; }
 .boot-container { width: 90%; max-width: 600px; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: #3a3e48; }
@@ -1145,6 +1145,9 @@ let mouse = { x: null, y: null };
 
 function resize() { canvas.width = canvas.parentElement.clientWidth; canvas.height = canvas.parentElement.clientHeight; }
 window.addEventListener('resize', resize);
+if (window.visualViewport) {
+  window.visualViewport.addEventListener('resize', resize);
+}
 resize();
 
 canvas.addEventListener('mousemove', (e) => { const rect = canvas.getBoundingClientRect(); mouse.x = e.clientX - rect.left; mouse.y = e.clientY - rect.top; });
