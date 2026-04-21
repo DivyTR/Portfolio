@@ -357,6 +357,83 @@ footer { text-align: center; padding: 40px; border-top: 1px solid rgba(255,255,2
   .project-stats { gap: 12px; }
 }
 
+/* ── Extended mobile overrides ── */
+@media (max-width: 768px) {
+  /* Override 3D entrance — simple fadeUp only on mobile */
+  :is(.skill-card,.project-card,.achievement-card,.about-card,.edu-card,.cert-chip).reveal {
+    transform: translateY(28px);
+    transform-origin: unset;
+  }
+  :is(.skill-card,.project-card,.achievement-card,.about-card,.edu-card,.cert-chip).reveal.visible {
+    transform: translateY(0);
+  }
+
+  /* Free GPU on mobile */
+  .skill-card, .project-card, .achievement-card, .about-card, .edu-card,
+  .cert-chip, .timeline-card, .contact-card, .stat-card { will-change: auto; }
+
+  /* Hero polish */
+  .hero h1 { letter-spacing: -1px; }
+  .hero-subtitle { font-size: 0.95rem; padding: 0 4px; }
+  .hero-badge { font-size: 0.68rem; }
+  .hero-cta { gap: 12px; }
+
+  /* Section desc full-width */
+  .section-desc { max-width: 100%; }
+
+  /* Contact cards — prevent email overflow */
+  .contact-card { min-width: 140px; max-width: 100%; width: calc(50% - 10px); }
+  .contact-card .value { font-size: 0.72rem; word-break: break-all; text-align: center; }
+  .contact-grid { gap: 12px; }
+
+  /* Tighter stat cards */
+  .stat-card { padding: 20px 16px; }
+  .stat-number { font-size: 1.8rem; }
+
+  /* Project stats row — better wrap */
+  .project-stats { justify-content: space-around; }
+  .project-stat-num { font-size: 1.1rem; }
+  .project-stat-label { font-size: 0.6rem; }
+
+  /* Tighter card padding on mobile */
+  .project-card { padding: 24px 20px; }
+  .project-card.featured { padding: 28px 20px; }
+  .achievement-card { padding: 24px 20px; }
+  .about-card { padding: 28px 20px; }
+  .timeline-card { padding: 24px 20px; }
+  .timeline-role { font-size: 1rem; }
+
+  /* Certs full-width */
+  .cert-chip { padding: 16px 20px; width: 100%; }
+
+  /* Footer */
+  footer { font-size: 0.72rem; padding: 28px 20px; word-break: break-word; }
+
+  /* Reduce float code clutter — keep only first 7 */
+  .float-code:nth-child(n+9) { display: none; }
+}
+
+/* ── Very small phones (≤ 430px) ── */
+@media (max-width: 430px) {
+  .hero h1 { font-size: clamp(1.9rem, 8vw, 2.6rem); letter-spacing: -0.5px; }
+  .hero-badge { padding: 6px 14px; font-size: 0.62rem; }
+  .btn-neo { padding: 12px 24px; font-size: 0.85rem; }
+  .hero-subtitle { font-size: 0.88rem; }
+  .about-stats { grid-template-columns: 1fr; }
+  section { padding: 50px 16px; }
+  .hero { padding: 90px 16px 56px; }
+  .section-title { font-size: clamp(1.6rem, 6vw, 2rem); }
+  .skills-grid, .projects-grid, .achievements-grid { gap: 14px; }
+  .contact-card { width: 100%; }
+  .contact-card .value { font-size: 0.7rem; }
+  .project-stat-num { font-size: 1rem; }
+  .timeline-card { padding: 18px 14px; }
+  .timeline-desc { font-size: 0.85rem; }
+  .project-tech span { font-size: 0.65rem; }
+  .skill-tag { font-size: 0.7rem; padding: 4px 10px; }
+  nav { padding: 12px 16px; }
+}
+
 #boot-screen { position: fixed; inset: 0; z-index: 99999; background: #0c0e12; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: opacity 0.6s ease, visibility 0.6s ease; }
 #boot-screen.done { opacity: 0; visibility: hidden; pointer-events: none; }
 body.booting { overflow: hidden; }
@@ -889,7 +966,7 @@ input, textarea, select { cursor: text !important; }
   <div class="reveal">
     <div class="section-label">// let's connect</div>
     <div class="section-title cipher" data-value="Establish Secure Connection">Establish Secure Connection</div>
-    <div class="section-desc" style="margin-left:auto; margin-right:auto;">Open to Big 4 cyber risk, GRC, and VAPT-focused roles. Let's talk.</div>
+    <div class="section-desc" style="margin-left:auto; margin-right:auto;">Open to cyber risk, GRC, and VAPT-focused roles. Let's talk.</div>
   </div>
   <div class="contact-grid reveal" style="transition-delay:0.1s">
     <a href="mailto:divyanshtripathi04@gmail.com" class="contact-card">
@@ -1303,6 +1380,47 @@ animate();
     entries.forEach(e => { if (e.isIntersecting) { countUp(e.target); obs.unobserve(e.target); } });
   }, { threshold: 0.6 });
   document.querySelectorAll('.stat-number, .project-stat-num').forEach(el => obs.observe(el));
+})();
+
+/* ── Touch device enhancements ── */
+(function() {
+  const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+  if (!isTouch) return;
+
+  /* Touch tilt — cards respond to finger drag */
+  document.querySelectorAll(
+    '.skill-card, .achievement-card, .contact-card, .project-card:not(.featured), .cert-chip'
+  ).forEach(card => {
+    let shine = card.querySelector('.card-shine');
+    if (!shine) { shine = document.createElement('div'); shine.className = 'card-shine'; card.appendChild(shine); }
+
+    card.addEventListener('touchmove', e => {
+      const t = e.touches[0];
+      const r = card.getBoundingClientRect();
+      const x = Math.max(0, Math.min(1, (t.clientX - r.left) / r.width));
+      const y = Math.max(0, Math.min(1, (t.clientY - r.top)  / r.height));
+      card.style.transform = `perspective(600px) rotateX(${(y-0.5)*-10}deg) rotateY(${(x-0.5)*10}deg) translateZ(4px)`;
+      card.style.setProperty('--mx', `${x * 100}%`);
+      card.style.setProperty('--my', `${y * 100}%`);
+      shine.style.opacity = '1';
+    }, { passive: true });
+
+    card.addEventListener('touchend', () => {
+      card.style.transition = 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)';
+      card.style.transform  = '';
+      shine.style.opacity   = '0';
+      setTimeout(() => card.style.transition = '', 450);
+    }, { passive: true });
+  });
+
+  /* Tap glitch on hero title */
+  const h1 = document.querySelector('.hero h1');
+  if (h1) {
+    h1.addEventListener('touchstart', () => {
+      h1.classList.add('glitching');
+      setTimeout(() => h1.classList.remove('glitching'), 480);
+    }, { passive: true });
+  }
 })();
 
 /* ── Floating code decorations in hero background ── */
