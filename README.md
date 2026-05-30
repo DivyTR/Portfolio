@@ -4,7 +4,7 @@ A scroll-driven, fully 3D personal portfolio with a hacker / green-CRT aesthetic
 A persistent WebGL world sits behind the content — you fly through a digital trench
 as you scroll — complete with a working in-page terminal.
 
-> **Live:** _add your Vercel URL here after deploying, e.g._ `https://portfolio-divytr.vercel.app`
+> ### 🌐 Live: **[portfolio-pi-kohl-56.vercel.app](https://portfolio-pi-kohl-56.vercel.app/)**
 
 ![Preview of the portfolio hero section](docs/preview.png)
 
