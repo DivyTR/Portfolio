@@ -1,0 +1,266 @@
+@import "tailwindcss";
+
+/* ════════════════════════════════════════════════════════════
+   CYBER PORTFOLIO — DESIGN SYSTEM
+   Hacker-green CRT aesthetic. oklch color space.
+   ════════════════════════════════════════════════════════════ */
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Hacker green palette (oklch: lightness chroma hue) */
+  --color-bg: oklch(11% 0.022 158);
+  --color-bg-deep: oklch(6% 0.016 158);
+  --color-surface: oklch(16% 0.03 158);
+  --color-primary: oklch(86% 0.22 150);
+  --color-primary-dim: oklch(72% 0.16 152);
+  --color-accent: oklch(88% 0.18 185);
+  --color-alert: oklch(68% 0.21 25);
+  --color-warn: oklch(85% 0.16 95);
+  --color-text: oklch(94% 0.02 150);
+  --color-text-dim: oklch(72% 0.04 152);
+  --color-text-muted: oklch(55% 0.04 152);
+  --color-line: oklch(40% 0.06 155);
+}
+
+:root {
+  /* raw rgb-ish tokens for shadows / canvases that need literal values */
+  --glow: oklch(86% 0.22 150);
+  --glow-soft: color-mix(in oklch, var(--color-primary) 30%, transparent);
+  --glow-mid: color-mix(in oklch, var(--color-primary) 60%, transparent);
+}
+
+/* NOTE: do NOT add an unlayered `* { margin:0; padding:0 }` reset here.
+   Tailwind v4 preflight already resets these inside @layer base; an unlayered
+   reset would override every padding/margin utility (p-*, py-*, mx-auto, …)
+   site-wide, since unlayered CSS beats layered CSS in the cascade. */
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-bg-deep);
+  color: var(--color-text);
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-primary);
+  color: var(--color-bg-deep);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-deep);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-line);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-dim);
+}
+
+/* ── CRT / hacker utilities ───────────────────────────────── */
+
+.crt-glow {
+  text-shadow:
+    0 0 4px var(--glow-mid),
+    0 0 18px var(--glow-soft);
+}
+
+.crt-glow-strong {
+  text-shadow:
+    0 0 8px var(--glow-mid),
+    0 0 30px var(--glow-soft),
+    0 0 64px var(--glow-soft);
+}
+
+@keyframes crt-flicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 1; }
+  93% { opacity: 0.82; }
+  94% { opacity: 1; }
+  96% { opacity: 0.9; }
+  97% { opacity: 1; }
+}
+.crt-flicker {
+  animation: crt-flicker 6s infinite steps(1);
+}
+
+/* Translucent layered panel — lets the 3D world show through */
+.glass-panel {
+  background: color-mix(in oklch, var(--color-surface) 55%, transparent);
+  backdrop-filter: blur(14px) saturate(1.3);
+  -webkit-backdrop-filter: blur(14px) saturate(1.3);
+  border: 1px solid color-mix(in oklch, var(--color-primary) 18%, transparent);
+  border-radius: 16px;
+  box-shadow:
+    0 8px 40px oklch(0% 0 0 / 0.45),
+    inset 0 1px 0 color-mix(in oklch, var(--color-primary) 10%, transparent);
+}
+
+.glass-panel-hover {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s ease, border-color 0.4s ease;
+}
+.glass-panel-hover:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in oklch, var(--color-primary) 40%, transparent);
+  box-shadow:
+    0 12px 50px oklch(0% 0 0 / 0.55),
+    0 0 30px var(--glow-soft);
+}
+
+/* Repeating grid overlay (depth cue above the canvas) */
+.grid-bg {
+  background-image:
+    linear-gradient(color-mix(in oklch, var(--color-primary) 8%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklch, var(--color-primary) 8%, transparent) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 100% 70% at 50% 0%, black 30%, transparent 80%);
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    box-shadow: 0 0 0 0 var(--glow-soft);
+    opacity: 1;
+  }
+  50% {
+    box-shadow: 0 0 0 6px transparent;
+    opacity: 0.6;
+  }
+}
+.pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes term-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+.term-cursor {
+  animation: term-blink 1s steps(1) infinite;
+}
+
+/* Scroll-reveal */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(34px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* CRT scanline overlay */
+.scanlines {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    oklch(0% 0 0 / 0.05) 3px,
+    oklch(0% 0 0 / 0.05) 4px
+  );
+}
+.scanlines::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 120% 120% at 50% 50%,
+    transparent 55%,
+    oklch(0% 0 0 / 0.4) 100%
+  );
+}
+
+/* Animated scroll-progress bar */
+@keyframes progress-shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+.scroll-progress {
+  background: linear-gradient(
+    90deg,
+    var(--color-primary),
+    var(--color-accent),
+    var(--color-primary)
+  );
+  background-size: 200% 100%;
+  animation: progress-shimmer 2.5s linear infinite;
+  box-shadow: 0 0 12px var(--glow-mid);
+}
+
+/* Hero glitch */
+@keyframes glitch-skew {
+  0%, 100% { transform: skewX(0); }
+  92% { transform: skewX(-3deg); }
+  94% { transform: skewX(2deg); }
+  96% { transform: skewX(0); }
+}
+@keyframes glitch-shadow {
+  0%, 100% {
+    text-shadow:
+      0 0 8px var(--glow-mid),
+      0 0 30px var(--glow-soft),
+      0 0 64px var(--glow-soft);
+  }
+  92% { text-shadow: -3px 0 var(--color-primary), 3px 0 var(--color-alert); }
+  94% { text-shadow: 3px 0 var(--color-accent), -3px 0 var(--color-alert); }
+  96% {
+    text-shadow:
+      0 0 8px var(--glow-mid),
+      0 0 30px var(--glow-soft),
+      0 0 64px var(--glow-soft);
+  }
+}
+.glitch {
+  animation: glitch-skew 5s infinite steps(2), glitch-shadow 5s infinite steps(2);
+}
+
+/* Section label tag */
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+}
+
+/* Custom-cursor enlarged ring on interactive hover */
+.cursor-ring-hover {
+  width: 2.75rem;
+  height: 2.75rem;
+  background: color-mix(in oklch, var(--color-primary) 6%, transparent);
+  border-color: var(--color-primary);
+}
+
+/* Hide native cursor on pointer-fine devices (custom cursor takes over) */
+@media (hover: hover) and (pointer: fine) {
+  body { cursor: none; }
+  a, button, input, textarea, select, label { cursor: none; }
+  input, textarea { caret-color: var(--color-primary); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
