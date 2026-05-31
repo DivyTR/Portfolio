@@ -8,8 +8,8 @@ export const palette = {
 
   /* Muted, cool scene colors so the background reads as atmospheric depth
      rather than competing green glow. Wireframes are neutral light, not green. */
-  grid: "#236b63", // grid section lines — cool teal
-  gridCell: "#0a3029", // grid cell lines — very dark teal
+  grid: "#2aa183", // grid section lines — vibrant teal, eased back a touch
+  gridCell: "#0f4836", // grid cell lines — visible dark teal
   ceiling: "#184f57", // faint ceiling grid (muted cyan)
   rain: "#2aa888", // rain particles — desaturated teal-green
   wire: "#cbe7dd", // floating geometry — light neutral

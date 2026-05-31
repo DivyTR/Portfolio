@@ -27,19 +27,19 @@ export function Trench() {
       <Wall side={1} />
       <Wall side={-1} />
 
-      {/* Toned-down Tron floor */}
+      {/* Vibrant Tron floor — brighter lines, carried further to the horizon */}
       <Grid
         position={[0, -3.6, -24]}
         args={[140, 140]}
         infiniteGrid
         cellSize={1}
-        cellThickness={0.5}
+        cellThickness={0.6}
         cellColor={palette.gridCell}
         sectionSize={5}
-        sectionThickness={1}
+        sectionThickness={1.2}
         sectionColor={palette.grid}
-        fadeDistance={62}
-        fadeStrength={3}
+        fadeDistance={82}
+        fadeStrength={2.1}
       />
 
       {/* Faint ceiling grid for enclosure */}
