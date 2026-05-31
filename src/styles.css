@@ -101,8 +101,13 @@ body {
    so the 3D world (grid, rain, wireframes) frosts softly behind each card. */
 .glass-panel {
   background: color-mix(in oklch, var(--color-surface) 78%, transparent);
-  backdrop-filter: blur(22px) saturate(1.25);
-  -webkit-backdrop-filter: blur(22px) saturate(1.25);
+  /* The filter value is held in a CSS variable on purpose: the production
+     minifier (Lightning CSS) collapses a concrete backdrop-filter + its
+     -webkit- twin down to the -webkit- prefix only (which Firefox ignores),
+     but it leaves var()-based values alone — so both declarations survive. */
+  --panel-blur: blur(22px) saturate(1.25);
+  -webkit-backdrop-filter: var(--panel-blur);
+  backdrop-filter: var(--panel-blur);
   border: 1px solid color-mix(in oklch, var(--color-primary) 18%, transparent);
   border-radius: 16px;
   box-shadow:
