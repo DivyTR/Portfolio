@@ -13,8 +13,9 @@
   --color-bg: oklch(11% 0.022 158);
   --color-bg-deep: oklch(6% 0.016 158);
   --color-surface: oklch(16% 0.03 158);
-  --color-primary: oklch(86% 0.22 150);
-  --color-primary-dim: oklch(72% 0.16 152);
+  /* Aquamarine / mint-cyan — cyan-leaning and less neon than pure green */
+  --color-primary: oklch(87% 0.15 174);
+  --color-primary-dim: oklch(74% 0.12 174);
   --color-accent: oklch(88% 0.18 185);
   --color-alert: oklch(68% 0.21 25);
   --color-warn: oklch(85% 0.16 95);
@@ -26,7 +27,7 @@
 
 :root {
   /* raw rgb-ish tokens for shadows / canvases that need literal values */
-  --glow: oklch(86% 0.22 150);
+  --glow: oklch(87% 0.15 174);
   --glow-soft: color-mix(in oklch, var(--color-primary) 30%, transparent);
   --glow-mid: color-mix(in oklch, var(--color-primary) 60%, transparent);
 }
