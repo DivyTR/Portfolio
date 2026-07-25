@@ -13,10 +13,11 @@ export function About() {
       />
 
       <div className="mt-12 grid gap-8 lg:grid-cols-2">
-        <Panel className="reveal-up p-8" hover>
+        <Panel className="reveal-up relative overflow-hidden p-8" hover>
+          <span className="border-beam" />
           <div className="space-y-5">
             {about.paragraphs.map((p, i) => (
-              <p key={i} className="text-sm font-light leading-relaxed text-text-dim">
+              <p key={i} className="text-[0.95rem] font-light leading-relaxed text-text-dim">
                 {p}
               </p>
             ))}
