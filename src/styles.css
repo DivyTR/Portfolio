@@ -30,6 +30,19 @@
   --glow: oklch(87% 0.15 174);
   --glow-soft: color-mix(in oklch, var(--color-primary) 30%, transparent);
   --glow-mid: color-mix(in oklch, var(--color-primary) 60%, transparent);
+
+  /* Panel surface + frost. Held as tokens so weak devices (data-perf) can
+     drop the (expensive) backdrop blur and use a near-solid card instead. */
+  --panel-bg: color-mix(in oklch, var(--color-surface) 78%, transparent);
+  --panel-blur: blur(22px) saturate(1.25);
+}
+
+/* Software-GL / low-power devices: kill the pricey backdrop-filter and make
+   panels near-solid so text stays crisp without any GPU blur work. */
+:root[data-perf="off"],
+:root[data-perf="low"] {
+  --panel-bg: color-mix(in oklch, var(--color-surface) 94%, transparent);
+  --panel-blur: none;
 }
 
 /* NOTE: do NOT add an unlayered `* { margin:0; padding:0 }` reset here.
@@ -100,12 +113,12 @@ body {
 /* Frosted layered panel — more opaque for readability, with a strong blur
    so the 3D world (grid, rain, wireframes) frosts softly behind each card. */
 .glass-panel {
-  background: color-mix(in oklch, var(--color-surface) 78%, transparent);
-  /* The filter value is held in a CSS variable on purpose: the production
-     minifier (Lightning CSS) collapses a concrete backdrop-filter + its
-     -webkit- twin down to the -webkit- prefix only (which Firefox ignores),
-     but it leaves var()-based values alone — so both declarations survive. */
-  --panel-blur: blur(22px) saturate(1.25);
+  background: var(--panel-bg);
+  /* The filter value is held in a CSS variable on purpose (two reasons):
+     1) the production minifier (Lightning CSS) collapses a concrete
+        backdrop-filter + its -webkit- twin down to -webkit- only (which
+        Firefox ignores), but leaves var()-based values alone; and
+     2) it lets low-power devices override --panel-blur to `none`. */
   -webkit-backdrop-filter: var(--panel-blur);
   backdrop-filter: var(--panel-blur);
   border: 1px solid color-mix(in oklch, var(--color-primary) 18%, transparent);

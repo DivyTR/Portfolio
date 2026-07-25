@@ -1,4 +1,5 @@
 import { Component, lazy, Suspense, type ReactNode } from "react";
+import { getTier } from "../lib/deviceTier";
 
 const CyberScene = lazy(() => import("../three/CyberScene"));
 
@@ -28,10 +29,16 @@ class WebGLBoundary extends Component<{ children: ReactNode }, { failed: boolean
 
 /** The fixed 3D world behind all content, with graceful degradation. */
 export function SceneBackground() {
+  const tier = getTier();
+
+  // Software renderers (AVD / remote desktop), reduced-motion, or tiny-RAM
+  // devices skip WebGL entirely — the static backdrop keeps them smooth.
+  if (tier === "off") return <StaticBackdrop />;
+
   return (
     <WebGLBoundary>
       <Suspense fallback={<StaticBackdrop />}>
-        <CyberScene />
+        <CyberScene tier={tier} />
       </Suspense>
     </WebGLBoundary>
   );
