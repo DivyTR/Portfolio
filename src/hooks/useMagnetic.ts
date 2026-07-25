@@ -1,11 +1,11 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Makes an element gently pull toward the cursor while hovered, springing
- * back on leave. Only active on fine-pointer, non-reduced-motion devices —
- * touch and reduced-motion users get a plain button.
+ * Magnetic hover: the element leans toward the cursor as it *approaches*
+ * (from up to `radius` px outside the element's edges) and springs back once
+ * the cursor leaves that zone. Fine-pointer, non-reduced-motion devices only.
  */
-export function useMagnetic<T extends HTMLElement>(strength = 0.35) {
+export function useMagnetic<T extends HTMLElement>(strength = 0.4, radius = 90) {
   const ref = useRef<T>(null);
 
   useEffect(() => {
@@ -14,25 +14,33 @@ export function useMagnetic<T extends HTMLElement>(strength = 0.35) {
     if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const move = (e: MouseEvent) => {
+    const clamp = (v: number, m: number) => Math.max(-m, Math.min(m, v));
+    let active = false;
+
+    const onMove = (e: MouseEvent) => {
       const r = el.getBoundingClientRect();
-      const x = (e.clientX - r.left - r.width / 2) * strength;
-      const y = (e.clientY - r.top - r.height / 2) * strength;
-      el.style.transition = "transform 0.1s ease-out";
-      el.style.transform = `translate(${x}px, ${y}px)`;
-    };
-    const leave = () => {
-      el.style.transition = "transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)";
-      el.style.transform = "";
+      const dx = e.clientX - (r.left + r.width / 2);
+      const dy = e.clientY - (r.top + r.height / 2);
+      const inZone =
+        Math.abs(dx) < r.width / 2 + radius && Math.abs(dy) < r.height / 2 + radius;
+
+      if (inZone) {
+        active = true;
+        el.style.transition = "transform 0.18s ease-out";
+        el.style.transform = `translate(${clamp(dx * strength, 36)}px, ${clamp(
+          dy * strength,
+          24,
+        )}px)`;
+      } else if (active) {
+        active = false;
+        el.style.transition = "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)";
+        el.style.transform = "";
+      }
     };
 
-    el.addEventListener("mousemove", move);
-    el.addEventListener("mouseleave", leave);
-    return () => {
-      el.removeEventListener("mousemove", move);
-      el.removeEventListener("mouseleave", leave);
-    };
-  }, [strength]);
+    window.addEventListener("mousemove", onMove, { passive: true });
+    return () => window.removeEventListener("mousemove", onMove);
+  }, [strength, radius]);
 
   return ref;
 }
