@@ -20,7 +20,7 @@
   --color-alert: oklch(68% 0.21 25);
   --color-warn: oklch(85% 0.16 95);
   --color-text: oklch(94% 0.02 150);
-  --color-text-dim: oklch(72% 0.04 152);
+  --color-text-dim: oklch(79% 0.035 152);
   --color-text-muted: oklch(55% 0.04 152);
   --color-line: oklch(40% 0.06 155);
 }
@@ -69,18 +69,30 @@ body {
   color: var(--color-bg-deep);
 }
 
+/* Firefox */
+html {
+  scrollbar-color: var(--color-primary) var(--color-bg-deep);
+}
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 11px;
 }
 ::-webkit-scrollbar-track {
   background: var(--color-bg-deep);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-line);
-  border-radius: 4px;
+  background: var(--color-primary);
+  border-radius: 6px;
+  /* bg-colored border insets the pill; box-shadow gives it the glow */
+  border: 3px solid var(--color-bg-deep);
+  box-shadow:
+    inset 0 0 6px color-mix(in oklch, white 35%, transparent),
+    0 0 8px var(--glow-soft);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-primary-dim);
+  background: var(--color-primary);
+  box-shadow:
+    inset 0 0 6px color-mix(in oklch, white 45%, transparent),
+    0 0 14px var(--glow-mid);
 }
 
 /* ── CRT / hacker utilities ───────────────────────────────── */
