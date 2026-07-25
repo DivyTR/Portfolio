@@ -171,7 +171,11 @@ export function TerminalHUD() {
         <span className="tracking-widest">[ _ ]</span>
       </div>
 
-      <div ref={bodyRef} className="flex h-[260px] flex-col gap-1.5 overflow-y-auto p-4">
+      <div
+        ref={bodyRef}
+        data-lenis-prevent
+        className="flex h-[260px] flex-col gap-1.5 overflow-y-auto p-4"
+      >
         {lines.map((line, i) => (
           <span key={i} className={`whitespace-pre-wrap break-words ${toneClass[line.tone]}`}>
             {line.text}

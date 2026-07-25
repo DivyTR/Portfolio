@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useGlobalScrollSignal } from "./hooks/useScrollProgress";
+import { useSmoothScroll } from "./hooks/useSmoothScroll";
 import { getTier } from "./lib/deviceTier";
 import { SceneBackground } from "./components/SceneBackground";
 import { BootScreen } from "./components/BootScreen";
@@ -20,6 +21,8 @@ import { profile } from "./data/content";
 export default function App() {
   // Feeds the module-level scroll signal that drives the 3D camera rig.
   useGlobalScrollSignal();
+  // Momentum smooth-scroll (auto-disabled on weak / reduced-motion devices).
+  useSmoothScroll();
 
   // Expose the device tier to CSS (drops backdrop blur on weak/GPU-less devices).
   useEffect(() => {

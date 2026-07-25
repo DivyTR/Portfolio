@@ -30,8 +30,9 @@ export function Projects() {
       {/* Featured */}
       <Panel
         hover
-        className="reveal-up mt-12 overflow-hidden p-8 md:p-10"
+        className="reveal-up relative mt-12 overflow-hidden p-8 md:p-10"
       >
+        <span className="border-beam" />
         <div className="font-mono text-[0.68rem] uppercase tracking-[0.2em] text-primary">
           {featuredProject.number}
         </div>

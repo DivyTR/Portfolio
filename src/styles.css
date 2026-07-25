@@ -276,6 +276,65 @@ body {
   input, textarea { caret-color: var(--color-primary); }
 }
 
+/* ── Lenis smooth scroll ──────────────────────────────────── */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ── Border beam ──────────────────────────────────────────────
+   A light that travels around a card's border. Pure CSS: a rotating
+   conic gradient, masked to just the border ring via a gradient border.
+   Wrap it in a `.border-beam-wrap` (position:relative; overflow:hidden). */
+@property --beam-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+.border-beam {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  pointer-events: none;
+  background: conic-gradient(
+    from var(--beam-angle),
+    transparent 0deg,
+    transparent 250deg,
+    var(--color-primary) 305deg,
+    var(--color-accent) 335deg,
+    transparent 360deg
+  );
+  /* Show the gradient only in the 1.5px padding ring (the "border"). */
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: beam-spin 6s linear infinite;
+}
+@keyframes beam-spin {
+  to {
+    --beam-angle: 360deg;
+  }
+}
+/* Only run the beam on capable devices (skip software-GL / reduced-motion). */
+:root:not([data-perf="high"]) .border-beam {
+  display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
