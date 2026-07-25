@@ -2,6 +2,7 @@ import { about, stats } from "../../data/content";
 import { Section } from "../ui/Section";
 import { SectionHeading } from "../ui/SectionHeading";
 import { Panel } from "../ui/Panel";
+import { CountUp } from "../ui/CountUp";
 
 export function About() {
   return (
@@ -31,9 +32,10 @@ export function About() {
               hover
               className="flex flex-col items-center justify-center p-6 text-center"
             >
-              <div className="font-mono text-3xl font-bold text-primary crt-glow sm:text-4xl">
-                {stat.value}
-              </div>
+              <CountUp
+                value={stat.value}
+                className="font-mono text-3xl font-bold text-primary crt-glow sm:text-4xl"
+              />
               <div className="mt-2 text-xs uppercase tracking-wider text-text-muted">
                 {stat.label}
               </div>

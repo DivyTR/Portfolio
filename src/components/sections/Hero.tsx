@@ -1,8 +1,11 @@
 import { profile } from "../../data/content";
 import { Typewriter } from "../ui/Typewriter";
+import { useMagnetic } from "../../hooks/useMagnetic";
 
 export function Hero() {
   const roleSlug = profile.role.toLowerCase().replace(/\s+/g, "_");
+  const contactBtn = useMagnetic<HTMLAnchorElement>();
+  const experienceBtn = useMagnetic<HTMLAnchorElement>();
 
   return (
     <section
@@ -33,15 +36,17 @@ export function Hero() {
 
         <div className="mt-11 flex flex-wrap justify-center gap-5">
           <a
+            ref={contactBtn}
             href="#contact"
-            className="rounded-xl bg-primary px-10 py-4 text-base font-medium text-bg-deep transition-transform hover:-translate-y-0.5"
+            className="rounded-xl bg-primary px-10 py-4 text-base font-medium text-bg-deep"
             style={{ boxShadow: "0 0 28px var(--glow-soft)" }}
           >
             Get in Touch
           </a>
           <a
+            ref={experienceBtn}
             href="#experience"
-            className="rounded-xl glass-panel glass-panel-hover px-10 py-4 text-base font-medium text-text"
+            className="rounded-xl glass-panel px-10 py-4 text-base font-medium text-text"
           >
             View Experience
           </a>

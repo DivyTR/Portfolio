@@ -335,6 +335,30 @@ html.lenis body {
   display: none;
 }
 
+/* ── Heading shimmer ──────────────────────────────────────────
+   A bright light sweeps across section titles periodically, then rests.
+   Scoped to the "high" tier so weak devices keep plain (always-visible)
+   text — background-clip:text + transparent fill only applies there. */
+:root[data-perf="high"] .heading-shimmer {
+  background-image: linear-gradient(
+    100deg,
+    currentColor 0%,
+    currentColor 42%,
+    color-mix(in oklch, var(--color-primary) 80%, white) 50%,
+    currentColor 58%,
+    currentColor 100%
+  );
+  background-size: 230% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: heading-sweep 6s ease-in-out infinite;
+}
+@keyframes heading-sweep {
+  0% { background-position: 150% 0; }
+  32%, 100% { background-position: -150% 0; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;

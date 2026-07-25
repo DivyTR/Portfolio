@@ -14,7 +14,7 @@ export function SectionHeading({ label, title, desc, center = false }: SectionHe
       <Cipher
         as="h2"
         text={title}
-        className="crt-glow text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-text leading-tight cursor-crosshair"
+        className="heading-shimmer crt-glow text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-text leading-tight cursor-crosshair"
       />
       {desc && (
         <p className={`mt-4 text-text-dim font-light leading-relaxed ${center ? "mx-auto" : ""}`}>
